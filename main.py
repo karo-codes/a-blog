@@ -26,8 +26,8 @@ Base = declarative_base()
 
 app = Flask(__name__)
 # app.config['SECRET_KEY'] = os.environ['secretkey']
-# app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
-app.config['SECRET_KEY'] = 'b42c209f3cbfc883fd212cf386c96bd86b95e246751472e51fe40a1b7fa65c85'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+# app.config['SECRET_KEY'] = 'b42c209f3cbfc883fd212cf386c96bd86b95e246751472e51fe40a1b7fa65c85'
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
@@ -57,7 +57,7 @@ def admin_only(f):
 
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL',  'sqlite:///blog.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -96,7 +96,7 @@ class Comment(db.Model):
     comment_author = relationship("User", back_populates="comments")
     text = db.Column(db.Text, nullable=False)
 
-# db.create_all()
+db.create_all()
 
 # vv allows current copyright date to be sent to every template (so I can
 # use it in the footer and extend to all other templates)
