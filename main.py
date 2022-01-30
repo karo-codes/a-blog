@@ -15,6 +15,9 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Table, Column, Integer, ForeignKey
 import datetime
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 time_now = datetime.datetime.now()
 copyright_date = time_now.strftime("%Y")
@@ -23,7 +26,7 @@ Base = declarative_base()
 
 app = Flask(__name__)
 # app.config['SECRET_KEY'] = os.environ['secretkey']
-app.config['SECRET_KEY'] = 'b42c209f3cbfc883fd212cf386c96bd86b95e246751472e51fe40a1b7fa65c85'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
