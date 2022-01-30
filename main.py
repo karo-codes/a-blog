@@ -16,7 +16,7 @@ from sqlalchemy import Table, Column, Integer, ForeignKey
 import datetime
 import os
 from dotenv import load_dotenv
-
+# load environment variables handler
 load_dotenv()
 
 time_now = datetime.datetime.now()
