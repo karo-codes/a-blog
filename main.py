@@ -22,7 +22,8 @@ copyright_date = time_now.strftime("%Y")
 Base = declarative_base()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ['secretkey']
+# app.config['SECRET_KEY'] = os.environ['secretkey']
+app.config['SECRET_KEY'] = 'b42c209f3cbfc883fd212cf386c96bd86b95e246751472e51fe40a1b7fa65c85'
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
